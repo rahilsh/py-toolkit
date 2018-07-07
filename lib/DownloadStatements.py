@@ -3,6 +3,7 @@ import io
 import json
 import logging
 import os
+import shutil
 import urllib2
 
 import PyPDF2
@@ -99,20 +100,26 @@ def convert_pdf_to_img(src_filename, parent_folder, image_name):
     # img.save(filename=small_filename)
 
 
+def delete_dir(path):
+    shutil.rmtree(path, ignore_errors=True)
+
+
 def main():
-    with open('/Users/rahil.r/Documents/test_2.csv') as csvfile:
+    with open('/Users/rahil.r/Documents/column_soft_2.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             try:
                 print "Processing userID: {}".format(row['userid'])
-                url = 'https://api.gw.zetapay.in/zeta.in/biller/1.0/userBills?token=QnQvMWJhVk9qUG5YK3NvbVlXd3kwQ2FxN2RaMzZsUy9IYlVFSFNjL09GSmZqNEFOOkFRRWRCbzc5MlU1eHkxZ05aY21ac0l1ZTVpZVk5ZW1pZ1VaRCtLL1cweE81TC9KMjJxTmNYRXhVTUNCSTBvY0k0RURSdHIvOUlYVU1GNElneFE2OWk1TUdYcGo5NWVlamtsTDNhVXVzUHhLSE9HT2hCSW55eksyZ1BDT1Y5U3BBUzhORkR2dWlQNDQxam56Q3pyWExJL1orcWdnPQ==&userID=' + \
-                      row['userid'] + '&cardProgramID=23c65c87-444a-4eb7-af70-bfb36ff91f3b&count=100'
+                url = 'https://api.gw.zetapay.in/zeta.in/biller/1.0/userBills?token=RHg1VkhOaFpHK1d6Q25hSU9JWGJwbHQ5SzhqS3dyaTRBdjZwNVVKbGpuZWIzc1d3OkFRR0IrMllnNTdnb2RwOUtVa1RRNTgrdm1OaXVKOVpjK2VlbW9PVE9qM2NFa2hSUTIxMUZwWE1WU1B5MUYyT1dodVhpVDl5WTFFR1ZqNSt5YnJFVERPZlhmMkJsOThLYmVUU0MwbTZIbFNNYis0UkhRUVZ6Si9RcWNDaFRzL0dzUEN1TUUwVE9tM3AzLzViU3dwZER3bTB6MWVXeE0vST0=&userID=' + \
+                      row['userid'] + '&cardProgramID=c80c3591-f1c6-4807-af16-8a327a3f3cf3&count=100'
                 response, status = request(method='GET',
                                            url=url)
                 if status is not 200:
-                    print "response: {}, Status: {}, userID: {}".format(response, status, str(row['userid']))
+                    print "Response not 200. response: {}, Status: {}, userID: {}".format(response, status,
+                                                                                          str(row['userid']))
                 else:
-                    path = '/Users/rahil.r/Documents/practo/' + str(row['userid']) + '/'
+                    path = '/Users/rahil.r/Documents/temp/column_soft/' + str(row['userid']) + '/'
+                    delete_dir(path)
                     make_dir_from_path(path)
                     print "Creating user folder and saving json"
                     with io.open(path + row['userid'] + '.json', 'w', encoding='utf8') as outfile:
@@ -121,7 +128,6 @@ def main():
                         print "No bill for user: {}".format(str(row['userid']))
                         continue
                     for bill in json.loads(response)["bills"]:
-
                         unique_bill_key = bill['attrs']['billNumber']
                         if unique_bill_key == '':
                             print "Bill No not present, hence using claimID"
@@ -139,9 +145,13 @@ def main():
                                 extn = '.jpg'
                                 if actual_bill.headers['content-type'] == 'application/pdf':
                                     extn = '.pdf'
+                                elif actual_bill.headers['content-type'] == 'image/png':
+                                    extn = '.png'
                                 elif actual_bill.headers['content-type'] != 'image/jpeg':
-                                    print "Bill not of jpg and pdf type. User {}, billNo".format(str(row['userid']),
-                                                                                                 str(unique_bill_key))
+                                    print "Bill not of jpg and pdf type. User {}, billNo: {}, content-type: {}".format(
+                                        str(row['userid']),
+                                        unique_bill_key.encode(
+                                            'utf-8'), str(actual_bill.headers['content-type']))
                                 with open(
                                         bills_folder_path + '/' + unique_bill_key + '_' + str(
                                             count) + extn,
@@ -157,7 +167,7 @@ def main():
                                 count = count + 1
                         else:
                             print "Skipping bill as it is not approved. BillNo: {}".format(
-                                str(unique_bill_key))
+                                unique_bill_key.encode('utf-8'))
             except Exception as e:
                 print "Error while processing user: {}".format(str(row['userid']))
                 logging.exception(
