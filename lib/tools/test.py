@@ -30,4 +30,4 @@ import sys
 
 
 #print file_get_contents("/Users/rahil.r/Documents/repo/analytics-infra/src/main/python/jasper-deployment/LastProcessedCommit.txt")
-print sys.path[0]
+print (sys.path[0])
