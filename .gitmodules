@@ -1,0 +1,3 @@
+[submodule "lib/elastalert"]
+	path = lib/elastalert
+	url = https://github.com/Yelp/elastalert.git
