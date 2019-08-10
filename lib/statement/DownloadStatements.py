@@ -11,10 +11,10 @@ from lib.utils.request_util import request
 from lib.utils.unicode_util import to_unicode
 
 # Update below five properties
-quater_folder = '/Users/rahil.r/Documents/tmp/practo/oct_dec/'
+quarter_folder = '/Users/rahil.r/Documents/tmp/practo/oct_dec/'
 program_type = 'asset'
-list_of_user_cards = quater_folder + program_type + '.csv'
-program_folder_path = quater_folder + program_type + '/'
+list_of_user_cards = quarter_folder + program_type + '.csv'
+program_folder_path = quarter_folder + program_type + '/'
 # keep it a day extra in both below dates
 uploaded_at_start_date = '20180930'
 uploaded_at_end_date = '20190101'
