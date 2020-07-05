@@ -1,5 +1,8 @@
 #!/bin/env python
 
+import os
+import sys
+
 try:
     # Python 2.x
     from SocketServer import ThreadingMixIn
@@ -10,11 +13,10 @@ except ImportError:
     from socketserver import ThreadingMixIn
     from http.server import SimpleHTTPRequestHandler, HTTPServer
 
+
 class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
     pass
 
-import sys
-import os
 
 if sys.argv[1:]:
     port = int(sys.argv[1])

@@ -34,7 +34,7 @@ def main():
     page_no = 1
     while True:
         print "Processing page {}".format(page_no)
-        url = "https://zeta.zendesk.com:443/api/v2/search.json"
+        url = "https://host.zendesk.com:443/api/v2/search.json"
 
         querystring = {"page": page_no, "query": "iscorpuser:false type:user"}
 
@@ -59,7 +59,7 @@ def main():
                     print "Ignoring user as email is none. userID: {}".format(user["id"])
                     user_count = user_count + 1
                     continue
-                url = "https://api-zendesk.zetaapps.in/zen/updateUser"
+                url = "https://localhost/zen/updateUser"
                 headers = {
                     'Content-Type': "application/json"
                 }

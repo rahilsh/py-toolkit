@@ -1,7 +1,8 @@
-import requests
 import json
 
-url = "https://zeta.zendesk.com/api/v2/requests/388717.json"
+import requests
+
+url = "https://subdomain.zendesk.com/api/v2/requests/388717.json"
 
 headers = {
     'Authorization': "Basic cmFoaWxyQHpldGEudGVjaDpaZXRhWmVuZGVza0AxNDUw",

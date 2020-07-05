@@ -12,7 +12,6 @@ def request(method, url, headers=None, params=None, data=None):
         print "Error while making API call to Method: {}, URL: {}, headers: {}, params: {}, data: {}".format(
             method, url, headers, params, data)
         print "Error: {}".format(str(e))
-        exit(1)
     finally:
         if response is not None:
             response.close()

@@ -4,14 +4,14 @@ import json
 import logging
 import urllib2
 
-from lib.utils.folder_util import delete_dir
-from lib.utils.folder_util import make_dir_from_path
-from lib.utils.image_util import convert_pdf_to_img
-from lib.utils.request_util import request
-from lib.utils.unicode_util import to_unicode
+from lib.main.python.utils.folder_util import delete_dir
+from lib.main.python.utils.folder_util import make_dir_from_path
+from lib.main.python.utils.image_util import convert_pdf_to_img
+from lib.main.python.utils.request_util import request
+from lib.main.python.utils.unicode_util import to_unicode
 
 # Update below five properties
-quarter_folder = '/Users/rahil.r/Documents/tmp/practo/oct_dec/'
+quarter_folder = '/Users/rahil.r/Documents/tmp/folder/oct_dec/'
 program_type = 'asset'
 list_of_user_cards = quarter_folder + program_type + '.csv'
 program_folder_path = quarter_folder + program_type + '/'
@@ -21,7 +21,7 @@ uploaded_at_end_date = '20190101'
 
 token = 'Smk3bUFlQVlyZHZrWDNTNTVuZE1tdVgyNGZQMHFXUXlDckhzdDdBWCtxdlpnRCs5OkFRSGdaaHBmTktubXBGcFVQa1ZBMFUyaGZlZ1F5dDNMK2Irc2RLakVrSld1M2xMc1loejYxbDdTU2pHZ3BvZTh6ZTM3T2tBUUpXTFNhaXN5S1dxMjkxcTZFMldtbnJxcFNYUFpWNmUxRjVhNHp3Zmc4SkxMcitna2N6NGhSWTIybkMvQVg0c0l1Q3ZYQmtrKzErL0xqV08rVFNMUW9xdz0='
 
-api_url = 'https://api.gw.zetapay.in/zeta.in/biller/1.0/userBills?token=' + token
+api_url = 'https://localhost/userBills?token=' + token
 
 
 def process_bill(user_id, path, bill):

@@ -1,7 +1,7 @@
 import json
 import logging
 
-from Backfill import request
+from lib.main.python.utils.request_util import request
 
 users = json.load(open("/Users/rahil.r/Documents/zendesk/corpID_not_populated.json"))
 new_users = {"users": []}
@@ -26,8 +26,10 @@ for user in users["results"]:
                 print "invalid phone number: {}. UserID: {}".format(phone, user["id"])
                 continue
             querystring = {
-                "token": "QnQvMWJhVk9qUG5YK3NvbVlXd3kwQ2FxN2RaMzZsUy9IYlVFSFNjL09GSmZqNEFOOkFRRWRCbzc5MlU1eHkxZ05aY21ac0l1ZTVpZVk5ZW1pZ1VaRCtLL1cweE81TC9KMjJxTmNYRXhVTUNCSTBvY0k0RURSdHIvOUlYVU1GNElneFE2OWk1TUdYcGo5NWVlamtsTDNhVXVzUHhLSE9HT2hCSW55eksyZ1BDT1Y5U3BBUzhORkR2dWlQNDQxam56Q3pyWExJL1orcWdnPQ=="}
-            url = "https://api.gw.zetapay.in:443/zeta.in/zetauser/1.0/getProfileByMobile?mobileNumber=" + phone
+                "token": "QnQvMWJhVk9qUG5YK3NvbVlXd3kwQ2FxN2RaMzZsUy9IYlVFSFNjL09GSmZqNEFOOkFRRWRCbzc5MlU1eHkxZ05aY21ac"
+                         "0l1ZTVpZVk5ZW1pZ1VaRCtLL1cweE81TC9KMjJxTmNYRXhVTUNCSTBvY0k0RURSdHIvOUlYVU1GNElneFE2OWk1TUdYc"
+                         "Go5NWVlamtsTDNhVXVzUHhLSE9HT2hCSW55eksyZ1BDT1Y5U3BBUzhORkR2dWlQNDQxam56Q3pyWExJL1orcWdnPQ=="}
+            url = "https://localhost/getProfileByMobile?mobileNumber=" + phone
             response_text, status_code = request(method="GET", url=url, params=querystring)
             print "Response: {}".format(response_text)
             if status_code == 200 and "corpID" in json.loads(response_text)["attrs"]:
@@ -38,8 +40,11 @@ for user in users["results"]:
         if phone is None:
             print "phone not present. User ID: {}".format(user["id"])
             querystring = {"email": email,
-                           "token": "QnQvMWJhVk9qUG5YK3NvbVlXd3kwQ2FxN2RaMzZsUy9IYlVFSFNjL09GSmZqNEFOOkFRRWRCbzc5MlU1eHkxZ05aY21ac0l1ZTVpZVk5ZW1pZ1VaRCtLL1cweE81TC9KMjJxTmNYRXhVTUNCSTBvY0k0RURSdHIvOUlYVU1GNElneFE2OWk1TUdYcGo5NWVlamtsTDNhVXVzUHhLSE9HT2hCSW55eksyZ1BDT1Y5U3BBUzhORkR2dWlQNDQxam56Q3pyWExJL1orcWdnPQ=="}
-            url = "https://api.gw.zetapay.in:443/zeta.in/zetauser/1.0/getProfileByEmail"
+                           "token": "QnQvMWJhVk9qUG5YK3NvbVlXd3kwQ2FxN2RaMzZsUy9IYlVFSFNjL09GSmZqNEFOOkFRRWRCbzc5MlU1eH"
+                                    "kxZ05aY21ac0l1ZTVpZVk5ZW1pZ1VaRCtLL1cweE81TC9KMjJxTmNYRXhVTUNCSTBvY0k0RURSdHIvOUlY"
+                                    "VU1GNElneFE2OWk1TUdYcGo5NWVlamtsTDNhVXVzUHhLSE9HT2hCSW55eksyZ1BDT1Y5U3BBUzhORkR2dW"
+                                    "lQNDQxam56Q3pyWExJL1orcWdnPQ=="}
+            url = "https://localhost/getProfileByEmail"
             response_text, status_code = request(method="GET", url=url, params=querystring)
             print "Response: {}".format(response_text)
             if status_code == 200 and "corpID" in json.loads(response_text)["attrs"]:

@@ -4,6 +4,9 @@ import os
 import re
 import time
 
+path_to_clean = '/Users/rahil.r/Documents/oms/'
+delete_older_than_days = 2
+
 
 def process_app_folder(app, builds, delete_older_than_days):
     builds.sort(key=lambda x: os.path.getmtime(x), reverse=False)
@@ -30,8 +33,7 @@ def print_build_creation_time(builds):
 def main():
     print("Running at {}".format(datetime.datetime.fromtimestamp(time.time()).strftime(
         '%Y-%m-%d %H:%M:%S.%f')))
-    path_to_clean = '/Users/rahil.r/Documents/oms/'
-    delete_older_than_days = 2
+
     apps = filter(os.path.isdir, glob.glob(path_to_clean + "*"))
     apps.sort(key=lambda x: os.path.getmtime(x))
 
@@ -47,12 +49,12 @@ def main():
             process_app_folder(app, snapshot_builds, delete_older_than_days)
         else:
             print("No SNAPSHOT build")
-        print()
+        print
         # release_builds = filter(lambda x: not x.endswith(
         #     '-SNAPSHOT'), all_builds)
         # print_build_creation_time(release_builds)
-        # process_app_folder(app, release_builds, delete_older_than_days)
-        # print
+        # process_app_folder(main, release_builds, delete_older_than_days)
+        print
 
 
 if __name__ == '__main__':
