@@ -2,11 +2,11 @@ import csv
 import io
 import json
 import logging
-import urllib2
+from urllib.request import urlopen
 
 from lib.main.python.utils.folder_util import delete_dir
 from lib.main.python.utils.folder_util import make_dir_from_path
-from lib.main.python.utils.image_util import convert_pdf_to_img
+from lib.main.python.pdf.pdf_to_Image import convert_pdf_to_img
 from lib.main.python.utils.request_util import request
 from lib.main.python.utils.unicode_util import to_unicode
 
@@ -19,7 +19,7 @@ program_folder_path = quarter_folder + program_type + '/'
 uploaded_at_start_date = '20180930'
 uploaded_at_end_date = '20190101'
 
-token = 'Smk3bUFlQVlyZHZrWDNTNTVuZE1tdVgyNGZQMHFXUXlDckhzdDdBWCtxdlpnRCs5OkFRSGdaaHBmTktubXBGcFVQa1ZBMFUyaGZlZ1F5dDNMK2Irc2RLakVrSld1M2xMc1loejYxbDdTU2pHZ3BvZTh6ZTM3T2tBUUpXTFNhaXN5S1dxMjkxcTZFMldtbnJxcFNYUFpWNmUxRjVhNHp3Zmc4SkxMcitna2N6NGhSWTIybkMvQVg0c0l1Q3ZYQmtrKzErL0xqV08rVFNMUW9xdz0='
+token = ''
 
 api_url = 'https://localhost/userBills?token=' + token
 
@@ -36,9 +36,9 @@ def process_bill(user_id, path, bill):
     #     print("skipping as it is already processed")
     #     continue
     # if unique_bill_key in {'10ika06816687555'}:
-    #     print("skipping as pdf is pass protected")
+    #     print("skipping as utils is pass protected")
     #     continue
-    print "Processing bill no: {}".format(unique_bill_key.encode('utf-8'))
+    print("Processing bill no: {}".format(unique_bill_key.encode('utf-8')))
     # if bill['uploadedAt'] is not None and (
     #         bill['uploadedAt'] < uploaded_at_start_date or bill[
     #     'uploadedAt'] > uploaded_at_end_date):
@@ -58,24 +58,24 @@ def process_bill(user_id, path, bill):
 def process_bill_urls(bill, bills_folder_path, unique_bill_key, user_id):
     count = 1
     for billUrl in bill["billUrls"]:
-        actual_bill = urllib2.urlopen(billUrl)
+        actual_bill = urlopen(billUrl)
         extn = '.jpg'
-        if actual_bill.headers['content-type'] == 'application/pdf':
-            extn = '.pdf'
+        if actual_bill.headers['content-type'] == 'application/utils':
+            extn = '.utils'
         elif actual_bill.headers['content-type'] == 'image/png':
             extn = '.png'
         elif actual_bill.headers['content-type'] != 'image/jpeg':
-            print "Bill not of jpg and pdf type. User {}, billNo: {}, content-type: {}".format(
+            print("Bill not of jpg and utils type. User {}, billNo: {}, content-type: {}".format(
                 user_id,
                 unique_bill_key.encode(
-                    'utf-8'), str(actual_bill.headers['content-type']))
+                    'utf-8'), str(actual_bill.headers['content-type'])))
         with open(
                 bills_folder_path + '/' + unique_bill_key + '_' + str(
                     count) + extn,
                 'wb') as output:
             output.write(actual_bill.read())
 
-        if extn == '.pdf':
+        if extn == '.utils':
             convert_pdf_to_img(
                 bills_folder_path + '/' + unique_bill_key + '_' + str(
                     count) + extn, bills_folder_path + '/',
@@ -86,31 +86,31 @@ def process_bill_urls(bill, bills_folder_path, unique_bill_key, user_id):
 
 def process_user_bills(bills, status, user_id):
     if status is not 200:
-        print "Response not 200. response: {}, Status: {}, userID: {}".format(bills, status,
-                                                                              str(user_id))
+        print("Response not 200. response: {}, Status: {}, userID: {}".format(bills, status,
+                                                                              str(user_id)))
     else:
         path = program_folder_path + str(user_id) + '/'
         delete_dir(path)
         make_dir_from_path(path)
-        print "Creating user folder and saving json"
+        print("Creating user folder and saving json")
         with io.open(path + user_id + '.json', 'w', encoding='utf8') as outfile:
             outfile.write(to_unicode(bills))
         bills_json = json.loads(bills)
         if len(bills_json["bills"]) == 0:
-            print "No bills found for mentioned date range"
+            print("No bills found for mentioned date range")
         for bill in bills_json["bills"]:
             process_bill(str(user_id), path, bill)
 
 
 def process_user_cards(user_id, card_id):
     try:
-        print "Processing userID: {}".format(user_id)
+        print("Processing userID: {}".format(user_id))
         url = api_url + '&userID=' + user_id + '&count=100&cardID=' + card_id + '&dateRange.fromDateYYYYmmDD=' + uploaded_at_start_date + '&dateRange.toDateYYYYmmDD=' + uploaded_at_end_date
         bills, status = request(method='GET',
                                 url=url)
         process_user_bills(bills, status, user_id)
     except Exception as e:
-        print "Error while processing user: {}".format(str(user_id))
+        print("Error while processing user: {}".format(str(user_id)))
         logging.exception(
             "Error while processing User: " + str(user_id))
 
@@ -124,7 +124,7 @@ def process_users_cards():
 
 def main():
     process_users_cards()
-    print "Done !!!"
+    print("Done !!!")
 
 
 if __name__ == '__main__':

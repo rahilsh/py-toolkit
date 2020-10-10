@@ -8,6 +8,6 @@ employees = {
             }
 
 for employee in employees:
-    print "insert into employee (id, name)" \
+    print("insert into employee (id, name)" \
           " values ('{}','{}');".format(employee.get('id'),
-                                        str(employee.get('name')))
+                                        str(employee.get('name'))))

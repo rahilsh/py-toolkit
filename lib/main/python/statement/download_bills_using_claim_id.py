@@ -1,5 +1,5 @@
 import json
-import urllib2
+from urllib.request import urlopen
 
 from lib.main.python.utils.request_util import request
 
@@ -19,16 +19,16 @@ def get_bill(claim_id):
 def process_bill(bill):
     count = 1
     for billUrl in bill["billUrls"]:
-        actual_bill = urllib2.urlopen(billUrl)
+        actual_bill = urlopen(billUrl)
         extn = '.jpg'
-        if actual_bill.headers['content-type'] == 'application/pdf':
-            extn = '.pdf'
+        if actual_bill.headers['content-type'] == 'application/utils':
+            extn = '.utils'
         elif actual_bill.headers['content-type'] == 'image/png':
             extn = '.png'
         elif actual_bill.headers['content-type'] != 'image/jpeg':
-            print "Bill not of jpg and pdf type.  billNo: {}, content-type: {}".format(
+            print("Bill not of jpg and utils type.  billNo: {}, content-type: {}".format(
 
-                bill['claimId'], str(actual_bill.headers['content-type']))
+                bill['claimId'], str(actual_bill.headers['content-type'])))
         if len(bill["billUrls"]) == 1:
             count_suffix = ''
         else:
@@ -42,7 +42,7 @@ def process_bill(bill):
 
 
 for claimId in claimIds:
-    print 'Processing: ' + claimId
+    print('Processing: ' + claimId)
     get_bill(claimId)
 
-print 'Done !!!'
+print('Done !!!')

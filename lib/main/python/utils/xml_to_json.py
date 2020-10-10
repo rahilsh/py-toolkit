@@ -7,9 +7,9 @@ def file_get_contents(filename):
         return f.read()
 
 
-contents = file_get_contents('/Users/rahil.r/work/jasper/jasper-reports/reports/auto_deployment/report_with_one_integer_param.jrxml')
+contents = file_get_contents('/Users/rahil.shaikh/code/bitbucket/python/python-test/lib/main/resources/test.xml')
 json_dumps = xmltodict.parse(contents)
-parameter = json_dumps['jasperReport']['parameter']
-print isinstance(parameter, dict)
-print isinstance(parameter, list)
-print json.dumps(parameter)
+parameter = json_dumps['test']['a']
+print(isinstance(parameter, dict))
+print(isinstance(parameter, list))
+print(json.dumps(parameter))

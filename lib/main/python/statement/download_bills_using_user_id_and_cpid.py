@@ -1,11 +1,11 @@
 import csv
 import json
-import urllib2
+from urllib.request import urlopen
 
-from lib.main.python.utils import make_dir_from_path
-from lib.main.python.utils import request
+from lib.main.python.utils.folder_util import make_dir_from_path
+from lib.main.python.utils.request_util import request
 
-token = 'MldCTzVWOTB5WS9wVC9CcklYbjA5bHdzY1d0cnF0S2doVVlMd1ZoWVlKQ2lHSkpsOkFRSGlxZnFIT05OcmZCT3VqRUcweHRQL1VtVWlaM3RnUlZiUkZlQjhwckw0U0tBcG04WW1HQW5LMThteG85dFVJd3h0bmFzRFRTTDhmdU84ckduRkx3alE5ZitJTk1NR1VaVlRUMWIybVhYOVdHU2E5T1FIQkVkVWdvdlNHcDFxWVVFaTY4NzdlOXlEVG5TMGVBVmZSTURHdjRLUmdQRT0='
+token = ''
 
 api_url = 'https://localhost/userBills?token=' + token
 
@@ -19,16 +19,16 @@ def get_bill(user_id, cardprogram_id):
 def process_bill(bill, email):
     count = 1
     for billUrl in bill["billUrls"]:
-        actual_bill = urllib2.urlopen(billUrl)
+        actual_bill = urlopen(billUrl)
         extn = '.jpg'
-        if actual_bill.headers['content-type'] == 'application/pdf':
-            extn = '.pdf'
+        if actual_bill.headers['content-type'] == 'application/utils':
+            extn = '.utils'
         elif actual_bill.headers['content-type'] == 'image/png':
             extn = '.png'
         elif actual_bill.headers['content-type'] != 'image/jpeg':
-            print "Bill not of jpg and pdf type.  billNo: {}, content-type: {}".format(
+            print("Bill not of jpg and utils type.  billNo: {}, content-type: {}".format(
 
-                bill['claimId'], str(actual_bill.headers['content-type']))
+                bill['claimId'], str(actual_bill.headers['content-type'])))
         if len(bill["billUrls"]) == 1:
             count_suffix = ''
         else:
@@ -42,7 +42,7 @@ def process_bill(bill, email):
         count = count + 1
 
 
-with open('/Users/rahil.r/Documents/tmp/oyo_fuel.csv') as csv_file:
+with open('/Users/rahil.r/Documents/tmp/test.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
@@ -51,10 +51,10 @@ with open('/Users/rahil.r/Documents/tmp/oyo_fuel.csv') as csv_file:
         cardprogram_id = row[2]
         print(user_id + " " + email + " " + cardprogram_id)
         bills = json.loads(get_bill(user_id, cardprogram_id))
-        folder_path = '/Users/rahil.r/Documents/tmp/oyo_users_fuel' + '/' + email
+        folder_path = '/Users/rahil.r/Documents/tmp/test' + '/' + email
         try:
             make_dir_from_path(folder_path)
         except Exception as e:
-            print "Error while processing user: {}".format(str(user_id))
+            print("Error while processing user: {}".format(str(user_id)))
         for bill in bills['bills']:
             process_bill(bill, email)

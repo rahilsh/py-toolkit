@@ -4,7 +4,7 @@ import os
 import re
 import time
 
-path_to_clean = '/Users/rahil.r/Documents/oms/'
+path_to_clean = '/Users/rahil.shaikh/Documents/oms/'
 delete_older_than_days = 2
 
 

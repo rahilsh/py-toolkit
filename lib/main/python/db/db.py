@@ -18,7 +18,7 @@ def execute(query):
         rows = cur.fetchall()
         return rows
     except Exception as e:
-        print "unable to connect to the database: {}".format(str(e))
+        print("unable to connect to the database: {}".format(str(e)))
 
 
-print execute('select * from test')
+print(execute('select * from test'))
