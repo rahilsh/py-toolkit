@@ -4,7 +4,6 @@
 import argparse
 import logging
 import sys
-from typing import NoReturn
 
 from py_toolkit import __version__
 

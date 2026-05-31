@@ -4,8 +4,6 @@ import os
 
 import requests
 
-from py_toolkit.exceptions import RequestError
-
 logger = logging.getLogger(__name__)
 
 
@@ -40,11 +38,13 @@ def request(
     logger.info("Making API call: %s %s", method, url)
     response: requests.Response | None = None
     try:
-        response = requests.request(method, url, headers=headers, params=params, data=data, timeout=30)
+        response = requests.request(
+            method, url, headers=headers, params=params, data=data, timeout=30
+        )
         response_text = response.text
         response_status = response.status_code
         return response_text, response_status
-    except requests.RequestException as e:
+    except requests.RequestException:
         data_str = data.encode("utf-8") if data else None
         logger.exception(
             "Request failed: method=%s url=%s data=%s",

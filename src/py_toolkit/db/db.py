@@ -1,6 +1,5 @@
 import logging
 import os
-from collections.abc import Sequence
 from typing import Any
 
 from py_toolkit.exceptions import DbError, MissingOptionalDependencyError

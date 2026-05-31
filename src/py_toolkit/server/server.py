@@ -6,9 +6,7 @@ Usage:
 """
 
 import logging
-import os
-import sys
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import HTTPServer
 from socketserver import ThreadingMixIn
 
 logger = logging.getLogger(__name__)

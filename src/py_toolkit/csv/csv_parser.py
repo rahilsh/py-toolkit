@@ -1,6 +1,5 @@
 import csv
 import logging
-from typing import Any
 
 from py_toolkit.exceptions import CsvParseError
 
@@ -29,7 +28,7 @@ def get_rows(file_path: str) -> list[dict[str, str]]:
     """
     rows: list[dict[str, str]] = []
     try:
-        with open(file_path, "r") as file:
+        with open(file_path) as file:
             for row in csv.DictReader(file):
                 rows.append(row)
         logger.debug("Parsed %d rows from %s", len(rows), file_path)

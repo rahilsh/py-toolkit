@@ -2,8 +2,6 @@ import logging
 import os
 import shutil
 
-from py_toolkit.exceptions import ToolkitError
-
 logger = logging.getLogger(__name__)
 
 

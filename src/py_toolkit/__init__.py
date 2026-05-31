@@ -1,4 +1,4 @@
-from importlib.metadata import version, PackageNotFoundError
+from importlib.metadata import PackageNotFoundError, version
 
 try:
     __version__ = version("py-toolkit")
@@ -6,13 +6,13 @@ except PackageNotFoundError:  # pragma: no cover
     __version__ = "0.0.0"
 
 from py_toolkit.exceptions import (
-    ToolkitError,
     CsvParseError,
-    RequestError,
     DbError,
-    PdfError,
-    XmlError,
     MissingOptionalDependencyError,
+    PdfError,
+    RequestError,
+    ToolkitError,
+    XmlError,
 )
 
 __all__ = [

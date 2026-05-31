@@ -37,7 +37,9 @@ def request(
     """
     response: requests.Response | None = None
     try:
-        response = requests.request(method, url, headers=headers, params=params, data=data, timeout=30)
+        response = requests.request(
+            method, url, headers=headers, params=params, data=data, timeout=30
+        )
         response_text = response.text
         response_status = response.status_code
         logger.debug("Request %s %s returned %d", method, url, response_status)
