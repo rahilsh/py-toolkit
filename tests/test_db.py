@@ -1,5 +1,7 @@
 from unittest import mock
 
+import pytest
+
 from py_toolkit.db.db import execute
 
 
@@ -18,3 +20,8 @@ class TestDb:
         mock_psycopg2.connect.side_effect = Exception("Connection refused")
         result = execute("select * from test")
         assert result is None
+
+    @mock.patch("py_toolkit.db.db.psycopg2", None)
+    def test_execute_raises_when_psycopg2_missing(self):
+        with pytest.raises(ImportError, match="psycopg2"):
+            execute("select * from test")

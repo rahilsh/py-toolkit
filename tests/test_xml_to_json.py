@@ -1,3 +1,5 @@
+from unittest import mock
+
 import pytest
 
 from py_toolkit.utils.xml_to_json import file_get_contents, parse_xml
@@ -40,3 +42,8 @@ class TestXmlToJson:
     def test_parse_xml_invalid_xml(self):
         with pytest.raises(Exception):
             parse_xml("<not><valid>xml")
+
+    @mock.patch("py_toolkit.utils.xml_to_json.xmltodict", None)
+    def test_parse_xml_raises_when_xmltodict_missing(self):
+        with pytest.raises(ImportError, match="xmltodict"):
+            parse_xml("<root/>")

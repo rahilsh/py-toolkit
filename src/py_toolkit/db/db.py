@@ -1,10 +1,15 @@
-import psycopg2
+try:
+    import psycopg2
+except ModuleNotFoundError:
+    psycopg2 = None
 
 username = 'postgres'
 password = ''
 
 
 def execute(query):
+    if psycopg2 is None:
+        raise ImportError("psycopg2 is not installed. Install it with: pip install py-toolkit[db]")
     try:
         conn = psycopg2.connect(
             "dbname='postgres' user='{}' host='localhost' port='5432' password='{}'".format(username, password))

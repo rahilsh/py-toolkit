@@ -1,6 +1,9 @@
 import json
 
-import xmltodict
+try:
+    import xmltodict
+except ModuleNotFoundError:
+    xmltodict = None
 
 
 def file_get_contents(filename):
@@ -9,6 +12,8 @@ def file_get_contents(filename):
 
 
 def parse_xml(xml_content):
+    if xmltodict is None:
+        raise ImportError("xmltodict is not installed. Install it with: pip install py-toolkit[xml]")
     parsed = xmltodict.parse(xml_content)
     return parsed
 
