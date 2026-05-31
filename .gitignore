@@ -1,8 +1,7 @@
-.idea/
-*.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so
@@ -33,24 +32,25 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .coverage
-.cache
-nosetests.xml
+.coverage.*
+*.cover
 coverage.xml
+nosetests.xml
 
-# Translations
-*.mo
+# IDE
+.idea/
+.vscode/
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+# pyenv
+.python-version
 
-# Rope
-.ropeproject
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
-# Django stuff:
-*.log
-*.pot
+# pytype
+.pytype/
 
 # Sphinx documentation
 docs/_build/
