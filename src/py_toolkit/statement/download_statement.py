@@ -65,7 +65,7 @@ def process_bill_urls(bill, bills_folder_path, unique_bill_key, user_id):
 
 
 def process_user_bills(bills, status, user_id):
-    if status is not 200:
+    if status != 200:
         print("Response not 200. response: {}, Status: {}, userID: {}".format(bills, status,
                                                                               str(user_id)))
     else:
@@ -89,7 +89,7 @@ def process_user_cards(user_id, card_id):
         bills, status = request(method='GET',
                                 url=url)
         process_user_bills(bills, status, user_id)
-    except Exception as e:
+    except Exception:
         print("Error while processing user: {}".format(str(user_id)))
         logging.exception(
             "Error while processing User: " + str(user_id))

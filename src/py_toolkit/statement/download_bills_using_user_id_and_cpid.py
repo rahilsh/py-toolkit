@@ -54,7 +54,7 @@ def main():  # pragma: no cover
             folder_path = '/Users/rahil.r/Documents/tmp/test' + '/' + email
             try:
                 make_dir_from_path(folder_path)
-            except Exception as e:
+            except Exception:
                 print("Error while processing user: {}".format(str(user_id)))
             for bill in bills['bills']:
                 process_bill(bill, email, folder_path)
