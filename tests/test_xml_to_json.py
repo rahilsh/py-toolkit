@@ -2,7 +2,8 @@ from unittest import mock
 
 import pytest
 
-from py_toolkit.utils.xml_to_json import file_get_contents, parse_xml
+from py_toolkit.exceptions import MissingOptionalDependencyError, XmlError
+from py_toolkit.utils.xml_to_json import file_get_contents, parse_xml, xml_file_to_json
 
 
 class TestXmlToJson:
@@ -13,6 +14,7 @@ class TestXmlToJson:
 
     def test_file_get_contents_empty_file(self, temp_dir):
         import os
+
         filepath = os.path.join(temp_dir, "empty.txt")
         with open(filepath, "w") as f:
             f.write("")
@@ -40,10 +42,25 @@ class TestXmlToJson:
         assert isinstance(result["test"]["a"]["item"], list)
 
     def test_parse_xml_invalid_xml(self):
-        with pytest.raises(Exception):
+        with pytest.raises(XmlError):
             parse_xml("<not><valid>xml")
 
     @mock.patch("py_toolkit.utils.xml_to_json.xmltodict", None)
     def test_parse_xml_raises_when_xmltodict_missing(self):
-        with pytest.raises(ImportError, match="xmltodict"):
+        with pytest.raises(MissingOptionalDependencyError, match="xmltodict"):
             parse_xml("<root/>")
+
+    def test_xml_file_to_json_returns_string(self, xml_file):
+        result = xml_file_to_json(xml_file)
+        assert isinstance(result, str)
+        assert '"test"' in result
+
+    def test_xml_file_to_json_with_simple_xml(self, temp_dir):
+        import os
+
+        filepath = os.path.join(temp_dir, "simple.xml")
+        with open(filepath, "w") as f:
+            f.write("<root><item>hello</item></root>")
+        result = xml_file_to_json(filepath)
+        assert '"item"' in result
+        assert '"hello"' in result

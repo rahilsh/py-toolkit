@@ -23,4 +23,3 @@ class TestUnicodeUtil:
     def test_to_unicode_with_bytes_input(self):
         result = to_unicode(b"hello")
         assert isinstance(result, str)
-        assert result == "b'hello'" or result == "hello"

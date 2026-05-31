@@ -54,3 +54,10 @@ dmypy.json
 
 # Sphinx documentation
 docs/_build/
+
+# Hypothesis tests
+_hypothesis/
+_hyp_test/
+
+# Test artifacts
+.pytest_cache/

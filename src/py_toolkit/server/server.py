@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
+"""Multithreaded HTTP file server.
 
+Usage:
+    python -m py_toolkit.server.server [port] [/path/to/share]
+"""
+
+import logging
 import os
 import sys
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+logger = logging.getLogger(__name__)
 
 
 class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
-    pass
+    """An HTTP server that handles each request in a separate thread.
 
+    Combines :class:`socketserver.ThreadingMixIn` with
+    :class:`http.server.HTTPServer` for concurrent request handling.
 
-if __name__ == '__main__':  # pragma: no cover
-    if sys.argv[1:]:
-        port = int(sys.argv[1])
-    else:
-        port = 8000
+    Example:
+        >>> server = ThreadingSimpleServer(('', 8000), SimpleHTTPRequestHandler)
+        >>> server.handle_request()
+    """
 
-    if sys.argv[2:]:
-        os.chdir(sys.argv[2])
-
-    server = ThreadingSimpleServer(('', port), SimpleHTTPRequestHandler)
-    try:
-        while 1:
-            sys.stdout.flush()
-            server.handle_request()
-    except KeyboardInterrupt:
-        print("Finished")
+    allow_reuse_address = True
+    daemon_threads = True

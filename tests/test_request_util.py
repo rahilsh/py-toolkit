@@ -1,6 +1,6 @@
 import pytest
-import requests
 
+from py_toolkit.exceptions import RequestError
 from py_toolkit.utils.request_util import request
 
 
@@ -33,16 +33,22 @@ class TestRequestUtil:
         text, status = request("GET", "https://example.com/search", params={"q": "test"})
         assert status == 200
 
-    def test_request_network_error_returns_none(self):
-        result = request("GET", "https://nonexistent.invalid")
-        assert result is None
+    def test_request_network_error_raises(self):
+        with pytest.raises(RequestError):
+            request("GET", "https://nonexistent.invalid")
 
-    def test_request_connection_error_returns_none(self):
-        result = request("GET", "https://localhost:1")
-        assert result is None
+    def test_request_connection_error_raises(self):
+        with pytest.raises(RequestError):
+            request("GET", "https://localhost:1")
 
     def test_request_response_closed_in_finally(self, requests_mock):
         requests_mock.get("https://example.com/close-test", text="ok", status_code=200)
         text, status = request("GET", "https://example.com/close-test")
         assert status == 200
         assert text == "ok"
+
+    def test_request_returns_tuple(self, requests_mock):
+        requests_mock.get("https://example.com/tuple", text="data", status_code=200)
+        result = request("GET", "https://example.com/tuple")
+        assert isinstance(result, tuple)
+        assert len(result) == 2
