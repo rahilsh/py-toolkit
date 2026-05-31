@@ -46,9 +46,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/rahils/py-toolkit"
-Source = "https://github.com/rahils/py-toolkit"
-BugTracker = "https://github.com/rahils/py-toolkit/issues"
+Homepage = "https://github.com/rahilsh/py-toolkit"
+Source = "https://github.com/rahilsh/py-toolkit"
+BugTracker = "https://github.com/rahilsh/py-toolkit/issues"
 
 [project.scripts]
 py-toolkit = "py_toolkit.cli:main"

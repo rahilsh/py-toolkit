@@ -3,8 +3,8 @@
 [![PyPI version](https://img.shields.io/pypi/v/py-toolkit?color=blue)](https://pypi.org/project/py-toolkit/)
 [![Python versions](https://img.shields.io/pypi/pyversions/py-toolkit)](https://pypi.org/project/py-toolkit/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/rahils/py-toolkit/actions/workflows/python-app.yml/badge.svg)](https://github.com/rahils/py-toolkit/actions/workflows/python-app.yml)
-[![Coverage](https://img.shields.io/badge/coverage-%3E85%25-brightgreen)](https://github.com/rahils/py-toolkit)
+[![CI](https://github.com/rahilsh/py-toolkit/actions/workflows/python-app.yml/badge.svg)](https://github.com/rahilsh/py-toolkit/actions/workflows/python-app.yml)
+[![Coverage](https://img.shields.io/badge/coverage-%3E85%25-brightgreen)](https://github.com/rahilsh/py-toolkit)
 [![Ruff](https://img.shields.io/badge/code_style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
 Utility library to accelerate development with common helpers for CSV parsing, PDF conversion, HTTP requests, file/folder management, XML conversion, and more.
@@ -125,7 +125,7 @@ Configure via environment variables: ``PGDATABASE``, ``PGUSER``, ``PGHOST``, ``P
 
 ```bash
 # Clone and install
-git clone https://github.com/rahils/py-toolkit.git
+git clone https://github.com/rahilsh/py-toolkit.git
 cd py-toolkit
 pip install -e ".[dev,db,xml]"
 
