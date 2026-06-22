@@ -42,7 +42,7 @@ dev = [
     "hypothesis>=6.141.1",
     "ruff>=0.15.18",
     "pre-commit>=4.3.0",
-    "tox>=4.0.0",
+    "tox>=4.30.3",
 ]
 
 [project.urls]
