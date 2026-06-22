@@ -33,13 +33,13 @@ dependencies = [
 
 [project.optional-dependencies]
 pdf = ["pdf2image>=1.17.0"]
-db = ["psycopg2-binary>=2.9.9"]
+db = ["psycopg2-binary>=2.9.12"]
 xml = ["xmltodict>=0.14.0"]
 dev = [
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
     "requests-mock>=1.12.1",
-    "hypothesis>=6.0.0",
+    "hypothesis>=6.141.1",
     "ruff>=0.11.0",
     "pre-commit>=4.0.0",
     "tox>=4.0.0",
