@@ -28,7 +28,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "requests>=2.32.0",
+    "requests>=2.34.2",
 ]
 
 [project.optional-dependencies]
@@ -42,7 +42,7 @@ dev = [
     "hypothesis>=6.141.1",
     "ruff>=0.15.18",
     "pre-commit>=4.6.0",
-    "tox>=4.30.3",
+    "tox>=4.56.0",
 ]
 
 [project.urls]
