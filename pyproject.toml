@@ -41,7 +41,7 @@ dev = [
     "requests-mock>=1.12.1",
     "hypothesis>=6.141.1",
     "ruff>=0.15.18",
-    "pre-commit>=4.3.0",
+    "pre-commit>=4.6.0",
     "tox>=4.30.3",
 ]
 
