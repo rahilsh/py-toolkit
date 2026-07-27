@@ -39,8 +39,8 @@ dev = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "requests-mock>=1.12.1",
-    "hypothesis>=6.159.0",
     "ruff>=0.16.0",
+    "hypothesis>=6.161.2",
     "pre-commit>=4.6.1",
     "tox>=4.58.0",
 ]
