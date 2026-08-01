@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Moved the changelog out of `README.md` into this file.
+- Dropped support for Python 3.9 (minimum is now 3.10) to align with the
+  `setuptools >= 83` build requirement.
 
 ### Removed
 - Internal one-off scripts (`scripts/`) and `resources/` that were specific to

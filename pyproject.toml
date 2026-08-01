@@ -7,7 +7,7 @@ name = "py-toolkit"
 version = "0.2.0"
 description = "Utility library to accelerate development with common helpers for CSV, PDF, server, and API tasks"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 keywords = ["utilities", "toolkit", "csv", "pdf", "server", "http", "xml"]
 authors = [
@@ -18,7 +18,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -81,7 +80,7 @@ skip_empty = true
 directory = "htmlcov"
 
 [tool.ruff]
-target-version = "py39"
+target-version = "py310"
 line-length = 100
 
 [tool.ruff.lint]
