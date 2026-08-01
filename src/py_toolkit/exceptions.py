@@ -22,5 +22,9 @@ class XmlError(ToolkitError):
     """Raised when an XML operation fails."""
 
 
+class GitError(ToolkitError):
+    """Raised when a git or GitHub operation fails."""
+
+
 class MissingOptionalDependencyError(ToolkitError, ImportError):
     """Raised when an optional dependency is not installed."""

@@ -8,6 +8,7 @@ except PackageNotFoundError:  # pragma: no cover
 from py_toolkit.exceptions import (
     CsvParseError,
     DbError,
+    GitError,
     MissingOptionalDependencyError,
     PdfError,
     RequestError,
@@ -23,5 +24,6 @@ __all__ = [
     "DbError",
     "PdfError",
     "XmlError",
+    "GitError",
     "MissingOptionalDependencyError",
 ]

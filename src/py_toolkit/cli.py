@@ -43,6 +43,15 @@ def build_parser() -> argparse.ArgumentParser:
     xml_parser = sub.add_parser("xml2json", help="Convert an XML file to JSON")
     xml_parser.add_argument("file", help="Path to XML file")
 
+    # git-config command
+    gitcfg_parser = sub.add_parser(
+        "git-config-replace",
+        help="Replace text in all .git/config files under a directory",
+    )
+    gitcfg_parser.add_argument("root", help="Directory to search for .git/config files")
+    gitcfg_parser.add_argument("old", help="Text to search for")
+    gitcfg_parser.add_argument("new", help="Replacement text")
+
     return parser
 
 
@@ -78,6 +87,15 @@ def run_xml2json(args: argparse.Namespace) -> None:
     print(result)
 
 
+def run_git_config_replace(args: argparse.Namespace) -> None:
+    from py_toolkit.git.git_config import replace_username_in_configs
+
+    modified = replace_username_in_configs(args.root, args.old, args.new)
+    for path in modified:
+        print(path)
+    print(f"Updated {len(modified)} git config file(s).")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -95,6 +113,8 @@ def main(argv: list[str] | None = None) -> None:
         run_serve(args)
     elif args.command == "xml2json":
         run_xml2json(args)
+    elif args.command == "git-config-replace":
+        run_git_config_replace(args)
     else:
         parser.print_help()
 

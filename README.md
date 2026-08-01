@@ -49,6 +49,7 @@ py-toolkit --version
 py-toolkit csv data.csv
 py-toolkit xml2json data.xml
 py-toolkit serve --port 8080 --dir /path/to/share
+py-toolkit git-config-replace ~/code "git@github.com:old/" "git@github.com:new/"
 ```
 
 ## Modules
@@ -58,6 +59,8 @@ py-toolkit serve --port 8080 --dir /path/to/share
 | Module | Description |
 |---|---|
 | `py_toolkit.csv.csv_parser` | Parse CSV files into dictionaries |
+| `py_toolkit.git.github` | Fork and delete GitHub repositories via the API |
+| `py_toolkit.git.git_config` | Bulk-edit `.git/config` files (e.g. rename a remote username) |
 | `py_toolkit.utils.folder_util` | Create and delete directories |
 | `py_toolkit.utils.request_util` | HTTP request wrapper using `requests` |
 | `py_toolkit.utils.unicode_util` | Python 2/3 unicode compatibility |
@@ -108,6 +111,34 @@ data = parse_xml("<root><item>value</item></root>")
 json_str = xml_file_to_json("data.xml")
 ```
 
+### Git / GitHub
+
+```python
+from py_toolkit.git.github import fork_repo, delete_repo, read_repo_names
+
+# Fork repositories listed in a file (one "owner/name" per line)
+for repo in read_repo_names("repos_to_fork.csv"):
+    fork_repo(repo, token)
+
+# Delete a repository (token needs the delete_repo scope)
+delete_repo("you/old-repo", token)
+```
+
+```python
+from py_toolkit.git.git_config import (
+    find_git_configs,
+    replace_in_git_config,
+    replace_username_in_configs,
+)
+
+# Rename a remote username across every repo under a directory
+modified = replace_username_in_configs(
+    "/Users/me/code",
+    "git@github.com:rahils/",
+    "git@github.com:rahilsh/",
+)
+```
+
 ### Database
 
 ```python
@@ -152,6 +183,7 @@ src/
     ├── cli.py            # CLI entry point
     ├── csv/              # CSV parsing
     ├── db/               # Database utilities
+    ├── git/              # GitHub API and .git/config helpers
     ├── pdf/              # PDF conversion
     ├── server/           # HTTP server
     └── utils/            # Core utilities (folder, request, unicode, xml)

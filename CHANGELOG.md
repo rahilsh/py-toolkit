@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `py_toolkit.git.github` module with `fork_repo`, `delete_repo`, and
+  `read_repo_names` helpers (modernised from the original `github_create_fork.py`
+  and `github_delete_repo.py` scripts).
+- `py_toolkit.git.git_config` module with `find_git_configs`,
+  `replace_in_git_config`, and `replace_username_in_configs` helpers (modernised
+  from the original `replace_username_in_git_config.py` script).
+- `GitError` exception for git/GitHub operation failures.
+- `git-config-replace` CLI subcommand.
 - `LICENSE` file (MIT).
 - `py.typed` marker so type hints are exposed to consumers (PEP 561).
 - Community health files: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`,
