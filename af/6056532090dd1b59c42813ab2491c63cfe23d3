@@ -1,0 +1,53 @@
+.github/ISSUE_TEMPLATE/config.yml
+  s_1a29babfb019a0::t_ac606bd1655688 1-8
+.github/PULL_REQUEST_TEMPLATE.md
+  s_1a29babfb019a0::t_ed578ee7d25154 1-26
+CONTRIBUTING.md
+  s_1a29babfb019a0::t_78761f6d5e81bc 1-91
+.github/ISSUE_TEMPLATE/bug_report.md
+  s_1a29babfb019a0::t_ebf1c7ee91783b 1-40
+CHANGELOG.md
+  s_1a29babfb019a0::t_68bf756acad4ad 1-49
+README.md
+  s_1a29babfb019a0::t_39053597f7d4f6 139-142
+  s_1a29babfb019a0::t_2ebda3bd5b0a44 186-203
+pyproject.toml
+  s_1a29babfb019a0::t_711342728ba82a 61-63
+  s_1a29babfb019a0::t_4c0f70244684dd 51
+tests/test_request_util.py
+  s_1a29babfb019a0::t_c38492965f82fa 28-30
+src/py_toolkit/zendesk/backfill.py
+  s_1a29babfb019a0::t_8a16387fe6a212 131
+LICENSE
+  s_1a29babfb019a0::t_a485e61c1b23b4 1-21
+tests/test_csv_parser.py
+  s_1a29babfb019a0::t_4478c04bd35f4c 37
+CODE_OF_CONDUCT.md
+  s_1a29babfb019a0::t_e175cb8d57c7e6 1-114
+.github/ISSUE_TEMPLATE/feature_request.md
+  s_1a29babfb019a0::t_91e7c0fa5528bd 1-24
+tests/test_property.py
+  s_1a29babfb019a0::t_4478c04bd35f4c 5-6
+.github/workflows/python-app.yml
+  s_1a29babfb019a0::t_c163fe0a62c4d5 1,9-15,17-18,20-32,34-40,42-53
+tests/test_folder_util.py
+  s_1a29babfb019a0::t_4478c04bd35f4c 5
+SECURITY.md
+  s_1a29babfb019a0::t_293916e9c67751 1-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "af6056532090dd1b59c42813ab2491c63cfe23d3",
+  "prompts": {},
+  "sessions": {
+    "s_1a29babfb019a0": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_043698945ffe245kFcdVCaofDX",
+        "model": "claude-opus-4.8"
+      },
+      "human_author": "Rahil Shaikh <rahilrshk@gmail.com>"
+    }
+  }
+}
