@@ -1,0 +1,41 @@
+src/py_toolkit/git/github.py
+  s_869494cfbbaef6::t_6b8818a5f0d594 1-114
+tests/test_git_config.py
+  s_869494cfbbaef6::t_6aa4edca46e295 43
+  s_869494cfbbaef6::t_16c1d036d8dc88 1-42,44-70
+README.md
+  s_869494cfbbaef6::t_8b3b70087d61f5 62-63
+  s_869494cfbbaef6::t_2a72c4b7eb5b29 114-141
+  s_869494cfbbaef6::t_08e8fd49907f13 186
+  s_869494cfbbaef6::t_99be4586759191 52
+CHANGELOG.md
+  s_869494cfbbaef6::t_f6f09412e5a2e5 11-18
+tests/test_github.py
+  s_869494cfbbaef6::t_f753d213913049 1-110
+src/py_toolkit/exceptions.py
+  s_869494cfbbaef6::t_35fb686c416950 25-28
+src/py_toolkit/__init__.py
+  s_869494cfbbaef6::t_999bd4c643926d 11,27
+src/py_toolkit/cli.py
+  s_869494cfbbaef6::t_03964f5e51c1ec 46-54
+  s_869494cfbbaef6::t_14c2eed1bf5e34 116-117
+  s_869494cfbbaef6::t_3fd763da83cef6 90-98
+src/py_toolkit/git/git_config.py
+  s_869494cfbbaef6::t_73aa897bb5b12f 1-95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "5d5901b69bbfb9c64c1cb80e878cb8204c4fc026",
+  "prompts": {},
+  "sessions": {
+    "s_869494cfbbaef6": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_04344247bffeOfy8FNmr134hjr",
+        "model": "claude-opus-4.8"
+      },
+      "human_author": "Rahil Shaikh <rahilrshk@gmail.com>"
+    }
+  }
+}
