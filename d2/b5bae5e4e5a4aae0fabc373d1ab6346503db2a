@@ -1,0 +1,26 @@
+CHANGELOG.md
+  s_1a29babfb019a0::t_46f52da8970081 19-20
+.github/workflows/python-app.yml
+  s_1a29babfb019a0::t_bb5ce643c71d3a 40
+tox.ini
+  s_1a29babfb019a0::t_444202120558ce 2
+pyproject.toml
+  s_1a29babfb019a0::t_a23114e8de1392 10
+  s_1a29babfb019a0::t_9240535b66e40b 83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "d2b5bae5e4e5a4aae0fabc373d1ab6346503db2a",
+  "prompts": {},
+  "sessions": {
+    "s_1a29babfb019a0": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_043698945ffe245kFcdVCaofDX",
+        "model": "claude-opus-4.8"
+      },
+      "human_author": "Rahil Shaikh <rahilrshk@gmail.com>"
+    }
+  }
+}
