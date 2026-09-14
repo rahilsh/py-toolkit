@@ -32,7 +32,7 @@ dependencies = [
 
 [project.optional-dependencies]
 pdf = ["pdf2image>=1.17.0"]
-db = ["psycopg2-binary>=2.9.12"]
+db = ["psycopg2-binary>=2.9.13"]
 xml = ["xmltodict>=1.0.4"]
 dev = [
     "pytest>=9.1.1",
